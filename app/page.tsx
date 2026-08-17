@@ -1,10 +1,14 @@
-import Image from "next/image";
+import { db } from "@/db";
+import { notes } from "@/db/schema";
 
-export default function Home() {
+export default async function Home() {
+  const allNotes = await db.select().from(notes);
+
   return (
     <main>
       <h1>Notes Library</h1>
-      <p>Coming Soon.</p>
+      <p>Welcome to the Notes Library!</p>
+      <p>{allNotes.length} notes in the library.</p>
     </main>
   );
 }
